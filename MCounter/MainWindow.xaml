@@ -1,0 +1,60 @@
+﻿<Window x:Class="MCounter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MCounter"
+        mc:Ignorable="d"
+        Title="MCounter v0.0" Height="600" Width="1000" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Последнее добавленное:" FontSize="14" FontStyle="Oblique" FontFamily="cursive" TextAlignment="Left" VerticalAlignment="Bottom"/>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2">
+            <TextBlock x:Name="mainTextShow" Background="LightGray" Margin="2" TextWrapping="Wrap"/>
+        </Border>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            
+            <ComboBox x:Name="list_spend" Height="25" VerticalAlignment="Top" Margin="5,20">
+                <TextBlock Text="Продукты питания"/>
+                <TextBlock Text="Товары для животных"/>
+                <TextBlock Text="Одежда/Обувь"/>
+                <TextBlock Text="Коммунальные услуги"/>
+                <TextBlock Text="Другое"/>
+            </ComboBox>
+
+            <TextBlock Text="Дополнительная информация" VerticalAlignment="Top" Margin="5,60" FontSize="13" FontStyle="Oblique" FontFamily="cursive"/>
+            <TextBox x:Name="adding_list_spend" Grid.Column="0" Grid.Row="1" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Margin="5,80" BorderThickness="2" BorderBrush="DarkGray"/>
+
+            <TextBox x:Name="Money" Height="20" VerticalAlignment="Bottom" Margin="5,165" Background="DarkGray"/>
+
+            <GroupBox x:Name="need_spend" VerticalAlignment="Bottom" Margin="5,80" Header="Нужность товара" FontSize="13" FontStyle="Oblique" FontFamily="cursive" Background="LightGray">
+                <StackPanel x:Name="var_need_spend">
+                    <RadioButton IsChecked="True" Margin="3" Checked="need_spend_check" HorizontalAlignment="Right" Width="171">Нужно</RadioButton>
+                    <RadioButton Margin="3" Checked="no_need_spend_check">Необязательно</RadioButton>
+                </StackPanel>
+            </GroupBox>
+
+            <Border Height="40" Width="100" VerticalAlignment="Bottom" Margin="20" CornerRadius="3" BorderThickness="2" BorderBrush="Blue">
+                <Button Content="Добавить" FontSize="14" FontFamily="cursive" Click="add_spend_fun"/>
+            </Border>
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>
