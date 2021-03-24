@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MCounter"
         mc:Ignorable="d"
-        Title="MCounter v0.0" Height="600" Width="1000" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+        Title="MCounter v0.0" Height="600" Width="1500" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="0.6*"/>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.35*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.25*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.7*"/>
-            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
 
@@ -26,9 +26,10 @@
             <TextBlock x:Name="mainTextShow" Background="LightGray" Margin="2" TextWrapping="Wrap"/>
         </Border>
 
-        <Grid Grid.Column="0" Grid.Row="1">
+        <StackPanel Grid.Column="0" Grid.Row="1">
             
-            <ComboBox x:Name="list_spend" Height="25" VerticalAlignment="Top" Margin="5,20">
+            
+            <ComboBox x:Name="list_spend" Height="25" VerticalAlignment="Top" Margin="5">
                 <TextBlock Text="Продукты питания"/>
                 <TextBlock Text="Товары для животных"/>
                 <TextBlock Text="Одежда/Обувь"/>
@@ -36,25 +37,35 @@
                 <TextBlock Text="Другое"/>
             </ComboBox>
 
-            <TextBlock Text="Дополнительная информация" VerticalAlignment="Top" Margin="5,60" FontSize="13" FontStyle="Oblique" FontFamily="cursive"/>
-            <TextBox x:Name="adding_list_spend" Grid.Column="0" Grid.Row="1" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Margin="5,80" BorderThickness="2" BorderBrush="DarkGray"/>
+            <TextBlock Text="Дополнительная информация" VerticalAlignment="Top" Margin="5,10" FontSize="13" FontStyle="Oblique" FontFamily="cursive"/>
+            <TextBox x:Name="adding_list_spend" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Margin="5,0" BorderThickness="2" BorderBrush="DarkGray"/>
 
-            <TextBox x:Name="Money" Height="20" VerticalAlignment="Bottom" Margin="5,165" Background="DarkGray"/>
+            <TextBox x:Name="Money" Height="20" VerticalAlignment="Top" Margin="5,10" Background="DarkGray"/>
 
-            <GroupBox x:Name="need_spend" VerticalAlignment="Bottom" Margin="5,80" Header="Нужность товара" FontSize="13" FontStyle="Oblique" FontFamily="cursive" Background="LightGray">
+            <GroupBox x:Name="need_spend" VerticalAlignment="Bottom" Margin="5,0" Header="Нужность товара" FontSize="13" FontStyle="Oblique" FontFamily="cursive" Background="LightGray">
                 <StackPanel x:Name="var_need_spend">
-                    <RadioButton IsChecked="True" Margin="3" Checked="need_spend_check" HorizontalAlignment="Right" Width="171">Нужно</RadioButton>
-                    <RadioButton Margin="3" Checked="no_need_spend_check">Необязательно</RadioButton>
+                    <RadioButton IsChecked="True" Margin="3" Checked="need_spend_check" HorizontalAlignment="Left" Width="171">Нужно</RadioButton>
+                    <RadioButton Margin="3" Checked="no_need_spend_check" HorizontalAlignment="Left">Необязательно</RadioButton>
                 </StackPanel>
             </GroupBox>
 
-            <Border Height="40" Width="100" VerticalAlignment="Bottom" Margin="20" CornerRadius="3" BorderThickness="2" BorderBrush="Blue">
+            <Border Height="40" Width="100" VerticalAlignment="Bottom" Margin="10" CornerRadius="3" BorderThickness="2" BorderBrush="Blue">
                 <Button Content="Добавить" FontSize="14" FontFamily="cursive" Click="add_spend_fun"/>
             </Border>
 
-        </Grid>
+            <Border Height="40" Width="100" VerticalAlignment="Bottom" CornerRadius="3" BorderThickness="2" BorderBrush="Blue">
+                <Button Content="Показать" FontSize="14" FontFamily="cursive" Click="show_spend_fun"/>
+            </Border>
 
+         </StackPanel>
 
+        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="2">
+            <DataGrid x:Name="table_data" Margin="2">
+                <DataGrid.Resources>
+
+                </DataGrid.Resources>
+            </DataGrid>
+        </Border>
 
     </Grid>
 </Window>

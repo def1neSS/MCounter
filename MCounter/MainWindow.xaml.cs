@@ -22,12 +22,19 @@ namespace MCounter
             //DirectoryInfo dirInfo = new DirectoryInfo(path);
         }
 
-        [Serializable]
         public class product
         {
+            public product(string t, string a, string m, string c)
+            {
+                Type = t;
+                Additional = a;
+                MoneySpend = m;
+                Category = c;
+            }
             public string Type { get; set; }
             public string Additional { get; set; }
             public string MoneySpend { get; set; }
+            public string Category { get; set; } 
 
         }
 
@@ -83,6 +90,49 @@ namespace MCounter
         private void no_need_spend_check(object sender, RoutedEventArgs e)
         {
             check = "Категория : необязательный";
+        }
+
+        private void show_spend_fun(object sender, RoutedEventArgs e)
+        {
+            mainTextShow.Text = "";
+            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    mainTextShow.Text += line + "\n";
+                }
+            }
+
+
+            var tl= new List<string>();
+            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+            {
+                string word = "";
+                int f = 0;
+                while (sr.Peek() != -1)
+                {
+                    char s = (char)sr.Read();
+                    if (s != '|' && s!='\n') { word += s;}
+                    else {
+                        tl.Add(word);
+                        word = "";
+                    }
+                }
+
+                var product_list = new List<product>();
+
+                for(int i = 0; i < tl.Count; i=i+4)
+                {
+                    Console.WriteLine(tl.Count);
+                    product pd = new product(tl[i], tl[i + 1], tl[i + 2], tl[i + 3]);
+                    product_list.Add(pd);
+                }
+                table_data.ItemsSource = product_list;
+            }
+
+               
+
         }
     }
 }
